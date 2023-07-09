@@ -1,0 +1,29 @@
+tmp.txt
+
+register route: this will accept the email and pass but store email and hash.
+login route:  accepts the email and pass.
+--
+we are going to compare them. 
+
+
+steps: 
+1. get info from request, email and password
+2. retrieve the hash from the database.
+    if user exists, then: compare the hash generated with database hash.
+    if does not exist, then: say login failed. 
+send query to database
+
+
+
+4 ROUTES:
+ - POST/ Register: takes in the email and password, and adds a user row in the user tables. 
+ - POST /login: checks the email and pasword against the users tbales
+        returns a JSON Web Token if the user is authenticated correctly
+- GET /hello: this route responds with a generic message. Doe snot matter if the user is authinticated or not.
+- GET /secretHandshake: this route responds with a personalized message only if user is authinicated. 
+    This ruote is expecting the Json Web Token. 
+
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. //this part is meta, info about how the token is created
+eyJpZCI6MSwiZW1haWwiOiJqb25hdGhhbkBnbWFpbC5jb20iLCJpYXQiOjE2ODg5MjkzMjMsImV4cCI6MTY4OTM2MTMyM30. //this is the payload
+OHjEEPmXR1Z5JfODaNpZj-wmlufsqnxWIk6Kfzrcxtc" //this is the signature of the payload. 
