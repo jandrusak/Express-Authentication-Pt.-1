@@ -1,0 +1,27 @@
+let express = require("express");
+// const { route } = require("./authRoutes");
+
+let router = express.Router();
+
+let authsMiddleware = require("../middleware/auths");
+
+//this is unprotected (does not require the client to be authenticated)
+router.get("/hello", function(req, res){
+    res.json("Greetings!");
+})
+
+// this is unprotected (does not require the client to be authenticated)
+router.get("/restricted", authsMiddleware.checkJWT, function(req, res){
+    //get the jwt from the client to make sure it is valid: this isnt something that is done in every function though. 
+
+
+    let userId = req.userinfo.id;
+    
+    res.json(`Welcome back #${userId}!`);
+
+
+})
+
+// router.get("/getBalance" , authsMiddleware.checkJWT, controller.getBalance); -- this is an example of if there was more to get.
+module.exports = router;
+
